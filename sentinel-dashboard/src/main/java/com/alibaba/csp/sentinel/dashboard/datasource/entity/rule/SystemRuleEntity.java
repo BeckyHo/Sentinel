@@ -16,6 +16,7 @@
 package com.alibaba.csp.sentinel.dashboard.datasource.entity.rule;
 
 import com.alibaba.csp.sentinel.slots.system.SystemRule;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.Date;
 
@@ -24,18 +25,22 @@ import java.util.Date;
  */
 public class SystemRuleEntity implements RuleEntity {
 
+    @JSONField(serialize = false)
     private Long id;
-
+    @JSONField(serialize = false)
     private String app;
+    @JSONField(serialize = false)
     private String ip;
+    @JSONField(serialize = false)
     private Integer port;
     private Double highestSystemLoad;
     private Long avgRt;
     private Long maxThread;
     private Double qps;
     private Double highestCpuUsage;
-
+    @JSONField(serialize = false)
     private Date gmtCreate;
+    @JSONField(serialize = false)
     private Date gmtModified;
 
     public static SystemRuleEntity fromSystemRule(String app, String ip, Integer port, SystemRule rule) {

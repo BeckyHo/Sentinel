@@ -19,15 +19,20 @@ import java.util.Date;
 
 import com.alibaba.csp.sentinel.slots.block.flow.ClusterFlowConfig;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * @author leyou
  */
 public class FlowRuleEntity implements RuleEntity {
 
+    @JSONField(serialize = false)
     private Long id;
+    @JSONField(serialize = false)
     private String app;
+    @JSONField(serialize = false)
     private String ip;
+    @JSONField(serialize = false)
     private Integer port;
     private String limitApp;
     private String resource;
@@ -56,8 +61,9 @@ public class FlowRuleEntity implements RuleEntity {
      * Flow rule config for cluster mode.
      */
     private ClusterFlowConfig clusterConfig;
-
+    @JSONField(serialize = false)
     private Date gmtCreate;
+    @JSONField(serialize = false)
     private Date gmtModified;
 
     public static FlowRuleEntity fromFlowRule(String app, String ip, Integer port, FlowRule rule) {
