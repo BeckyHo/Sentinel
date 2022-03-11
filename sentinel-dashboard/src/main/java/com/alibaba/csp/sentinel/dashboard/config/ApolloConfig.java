@@ -3,11 +3,13 @@ package com.alibaba.csp.sentinel.dashboard.config;
 import com.ctrip.framework.apollo.openapi.client.ApolloOpenApiClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author chunming.ygy@gmail.com
  * @date 2022/3/4 10:03
  */
+@Configuration
 public class ApolloConfig {
 
     @Value("${apollo.portal.url}")
