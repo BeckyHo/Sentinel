@@ -10,9 +10,10 @@ import com.ctrip.framework.apollo.openapi.dto.OpenItemDTO;
 import com.ctrip.framework.apollo.openapi.dto.OpenNamespaceDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +22,7 @@ import java.util.Objects;
  * @author chunming.ygy@gmail.com
  * @date 2022/1/9 10:20
  */
+@Service("apolloCommonService")
 public class ApolloCommonService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApolloCommonService.class);
@@ -28,9 +30,7 @@ public class ApolloCommonService {
      * 没有找到配置项，apollo 返回的错误码
      */
     private static final int NO_FOUND_ERROR_CODE = 404;
-
-
-    @Autowired
+    @Resource
     private ApolloOpenApiClient apolloOpenApiClient;
 
     @Value("${env:DEV}")

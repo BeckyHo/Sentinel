@@ -1,0 +1,28 @@
+package com.alibaba.csp.sentinel.dashboard.rule.apollo.degrade;
+
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.DegradeRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.rule.DynamicRuleProvider;
+import com.alibaba.csp.sentinel.dashboard.rule.apollo.ApolloCommonService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * @author chunming.ygy@gmail.com
+ * @date 2022/1/11 13:41
+ */
+@Component("degradeRuleApolloProvider")
+public class DegradeRuleApolloProvider implements DynamicRuleProvider<List<DegradeRuleEntity>> {
+
+    @Resource
+    private ApolloCommonService apolloCommonService;
+    @Value("${degrade.key.suffix:degrade}")
+    private String degradeDataIdSuffix;
+
+    @Override
+    public List<DegradeRuleEntity> getRules(String appName) throws Exception {
+        return apolloCommonService.getRules(appName, degradeDataIdSuffix, DegradeRuleEntity.class);
+    }
+}

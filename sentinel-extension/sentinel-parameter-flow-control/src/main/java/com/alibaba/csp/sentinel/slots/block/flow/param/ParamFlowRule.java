@@ -25,6 +25,7 @@ import com.alibaba.csp.sentinel.context.Context;
 import com.alibaba.csp.sentinel.node.DefaultNode;
 import com.alibaba.csp.sentinel.slots.block.AbstractRule;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * Rules for "hot-spot" frequent parameter flow control.
@@ -59,10 +60,13 @@ public class ParamFlowRule extends AbstractRule {
     /**
      * Traffic shaping behavior (since 1.6.0).
      */
+    @JSONField(serialize = false)
     private int controlBehavior = RuleConstant.CONTROL_BEHAVIOR_DEFAULT;
-
+    @JSONField(serialize = false)
     private int maxQueueingTimeMs = 0;
+    @JSONField(serialize = false)
     private int burstCount = 0;
+    @JSONField(serialize = false)
     private long durationInSec = 1;
 
     /**
@@ -88,7 +92,7 @@ public class ParamFlowRule extends AbstractRule {
         return controlBehavior;
     }
 
-    public ParamFlowRule setControlBehavior(int controlBehavior) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setControlBehavior(int controlBehavior) {
         this.controlBehavior = controlBehavior;
         return this;
     }
@@ -97,7 +101,7 @@ public class ParamFlowRule extends AbstractRule {
         return maxQueueingTimeMs;
     }
 
-    public ParamFlowRule setMaxQueueingTimeMs(int maxQueueingTimeMs) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setMaxQueueingTimeMs(int maxQueueingTimeMs) {
         this.maxQueueingTimeMs = maxQueueingTimeMs;
         return this;
     }
@@ -106,7 +110,7 @@ public class ParamFlowRule extends AbstractRule {
         return burstCount;
     }
 
-    public ParamFlowRule setBurstCount(int burstCount) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setBurstCount(int burstCount) {
         this.burstCount = burstCount;
         return this;
     }
@@ -115,7 +119,7 @@ public class ParamFlowRule extends AbstractRule {
         return durationInSec;
     }
 
-    public ParamFlowRule setDurationInSec(long durationInSec) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setDurationInSec(long durationInSec) {
         this.durationInSec = durationInSec;
         return this;
     }
@@ -124,7 +128,7 @@ public class ParamFlowRule extends AbstractRule {
         return grade;
     }
 
-    public ParamFlowRule setGrade(int grade) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setGrade(int grade) {
         this.grade = grade;
         return this;
     }
@@ -133,7 +137,7 @@ public class ParamFlowRule extends AbstractRule {
         return paramIdx;
     }
 
-    public ParamFlowRule setParamIdx(Integer paramIdx) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setParamIdx(Integer paramIdx) {
         this.paramIdx = paramIdx;
         return this;
     }
@@ -142,7 +146,7 @@ public class ParamFlowRule extends AbstractRule {
         return count;
     }
 
-    public ParamFlowRule setCount(double count) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setCount(double count) {
         this.count = count;
         return this;
     }
@@ -151,7 +155,7 @@ public class ParamFlowRule extends AbstractRule {
         return paramFlowItemList;
     }
 
-    public ParamFlowRule setParamFlowItemList(List<ParamFlowItem> paramFlowItemList) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setParamFlowItemList(List<ParamFlowItem> paramFlowItemList) {
         this.paramFlowItemList = paramFlowItemList;
         return this;
     }
@@ -167,7 +171,7 @@ public class ParamFlowRule extends AbstractRule {
         return hotItems;
     }
 
-    ParamFlowRule setParsedHotItems(Map<Object, Integer> hotItems) {
+    com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setParsedHotItems(Map<Object, Integer> hotItems) {
         this.hotItems = hotItems;
         return this;
     }
@@ -176,7 +180,7 @@ public class ParamFlowRule extends AbstractRule {
         return clusterMode;
     }
 
-    public ParamFlowRule setClusterMode(boolean clusterMode) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setClusterMode(boolean clusterMode) {
         this.clusterMode = clusterMode;
         return this;
     }
@@ -185,7 +189,7 @@ public class ParamFlowRule extends AbstractRule {
         return clusterConfig;
     }
 
-    public ParamFlowRule setClusterConfig(ParamFlowClusterConfig clusterConfig) {
+    public com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule setClusterConfig(ParamFlowClusterConfig clusterConfig) {
         this.clusterConfig = clusterConfig;
         return this;
     }
@@ -202,7 +206,7 @@ public class ParamFlowRule extends AbstractRule {
         if (o == null || getClass() != o.getClass()) { return false; }
         if (!super.equals(o)) { return false; }
 
-        ParamFlowRule that = (ParamFlowRule)o;
+        com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule that = (com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule)o;
 
         if (grade != that.grade) { return false; }
         if (Double.compare(that.count, count) != 0) { return false; }
@@ -237,16 +241,16 @@ public class ParamFlowRule extends AbstractRule {
     @Override
     public String toString() {
         return "ParamFlowRule{" +
-            "grade=" + grade +
-            ", paramIdx=" + paramIdx +
-            ", count=" + count +
-            ", controlBehavior=" + controlBehavior +
-            ", maxQueueingTimeMs=" + maxQueueingTimeMs +
-            ", burstCount=" + burstCount +
-            ", durationInSec=" + durationInSec +
-            ", paramFlowItemList=" + paramFlowItemList +
-            ", clusterMode=" + clusterMode +
-            ", clusterConfig=" + clusterConfig +
-            '}';
+                "grade=" + grade +
+                ", paramIdx=" + paramIdx +
+                ", count=" + count +
+                ", controlBehavior=" + controlBehavior +
+                ", maxQueueingTimeMs=" + maxQueueingTimeMs +
+                ", burstCount=" + burstCount +
+                ", durationInSec=" + durationInSec +
+                ", paramFlowItemList=" + paramFlowItemList +
+                ", clusterMode=" + clusterMode +
+                ", clusterConfig=" + clusterConfig +
+                '}';
     }
 }
